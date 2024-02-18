@@ -8,6 +8,7 @@ const NoteItem = props => {
   const {deleteNote} = context;
 
   return (
+
     <div className='col-md-4'>
       <div className='card my-2' style={{}}>
         <div className='card-body '>
