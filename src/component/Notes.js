@@ -15,7 +15,7 @@ const Notes = () => {
     title: '',
     description: '',
     tag: '',
-    id:''
+    id: ''
   })
 
   const ref = useRef(null)
@@ -25,14 +25,14 @@ const Notes = () => {
       title: notes.title,
       description: notes.description,
       tag: notes.tag,
-      id:notes._id
+      id: notes._id
     })
     // console.log(editNote)
     ref.current.click()
   }
 
   const handleClick = () => {
-    updateNote(editNote.id,editNote.title,editNote.description,editNote.tag)
+    updateNote(editNote.id, editNote.title, editNote.description, editNote.tag)
   }
 
   const onchange = e => {
@@ -119,6 +119,9 @@ const Notes = () => {
                 type='button'
                 className='btn btn-primary'
                 onClick={handleClick}
+                disabled={
+                  editNote.title.length < 5 || editNote.description.length < 5
+                }
               >
                 Save changes
               </button>
@@ -129,6 +132,7 @@ const Notes = () => {
 
       <div className='row my-3'>
         <h2>Your Notes</h2>
+        <p>{notes.length === 0 ? 'No Notes to display' : ''}</p>
         {notes.map((note, index) => {
           return (
             <NoteItem

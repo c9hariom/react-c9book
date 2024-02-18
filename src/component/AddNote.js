@@ -5,7 +5,7 @@ const AddNote = () => {
   const context = useContext(NoteContext)
   const { addNote } = context
 
-  const [note, setNote] = useState(null)
+  const [note, setNote] = useState({ title: '', description: '', tag: '' })
 
   const handleClick = () => {
     // console.log(note)
@@ -25,6 +25,8 @@ const AddNote = () => {
             <div className='mb-3'>
               <label className='form-label'>Title</label>
               <input
+                required={true}
+                minLength={5}
                 type='text'
                 className='form-control'
                 id='title'
@@ -35,6 +37,8 @@ const AddNote = () => {
             <div className='mb-3'>
               <label className='form-label'>Description</label>
               <input
+                required
+                minLength={5}
                 type='text'
                 className='form-control'
                 id='description'
@@ -53,9 +57,10 @@ const AddNote = () => {
               />
             </div>
             <button
-              type='button'
+              type='submit'
               className='btn btn-primary'
               onClick={handleClick}
+              disabled={note.title.length < 5 || note.description.length < 5}
             >
               Add Note
             </button>
