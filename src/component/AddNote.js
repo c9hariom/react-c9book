@@ -5,10 +5,10 @@ const AddNote = () => {
   const context = useContext(NoteContext)
   const { addNote } = context
 
-  const [note, setNote] = useState({ title: '', description: '', tag: '' })
+  const [note, setNote] = useState(null)
 
   const handleClick = () => {
-    console.log(note)
+    // console.log(note)
     addNote(note.title, note.description, note.tag)
   }
 

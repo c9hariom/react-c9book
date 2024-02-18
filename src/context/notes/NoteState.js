@@ -18,7 +18,7 @@ const NoteState = props => {
         }
       })
       const data = await response.json()
-      console.log(data)
+      //console.log(data)
       setNotes(data)
     } catch (error) {
       console.error(error)
@@ -40,7 +40,7 @@ const NoteState = props => {
       let note = {
         title: title,
         description: description,
-        tag: tag,
+        tag: tag ? tag : 'general',
         _id: data._id
       }
       setNotes(notes.concat(note))
@@ -49,8 +49,9 @@ const NoteState = props => {
     }
   }
 
-  const editNote = async (id, title, description, tag) => {
+  const updateNote = async (id, title, description, tag) => {
     try {
+      //console.log(id, title, description, tag)
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
         method: 'PUT',
         headers: {
@@ -61,14 +62,18 @@ const NoteState = props => {
         body: JSON.stringify({ title, description, tag })
       })
       const data = await response.json()
+      // getNotes()
+      let updatedNote = []
       for (let i = 0; i < notes.length; i++) {
-        const element = notes[i]
+        let element = notes[i]
         if (element._id === id) {
           element.title = title
           element.description = description
-          HTMLDataListElement.tag = tag
+          element.tag = tag
         }
+        updatedNote.push(element)
       }
+      setNotes(updatedNote)
     } catch (error) {
       console.log({ error })
     }
@@ -98,7 +103,7 @@ const NoteState = props => {
 
   return (
     <NoteContext.Provider
-      value={{ notes, setNotes, addNote, editNote, deleteNote, getNotes }}
+      value={{ notes, setNotes, addNote, updateNote, deleteNote, getNotes }}
     >
       {props.children}
     </NoteContext.Provider>
