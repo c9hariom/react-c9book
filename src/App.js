@@ -9,6 +9,7 @@ import Login from './component/Login'
 import Signup from './component/Signup'
 import { useState } from 'react'
 import Logout from './component/Logout'
+import Footer from './component/Footer'
 
 function App () {
   const [alert, setAlert] = useState(null)
@@ -26,7 +27,7 @@ function App () {
           <Navbar></Navbar>
           <Alert alert={alert} />
           <Alert message={'amazing'} />
-          <div className='container'>
+          <div className='container main-body'>
             <Routes>
               <Route
                 path='/'
@@ -53,6 +54,7 @@ function App () {
               ></Route>
             </Routes>
           </div>
+          <Footer />
         </Router>
       </NoteState>
     </>

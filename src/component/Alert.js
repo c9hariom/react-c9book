@@ -5,7 +5,7 @@ const Alert = props => {
     props.alert && (
       <div className='container'>
         <div
-          className={`alert alert-${props.alert.type.toLowerCase()} alert-dismissible fade show`}
+          className={`m-3 alert alert-${props.alert.type.toLowerCase()} alert-dismissible fade show`}
           role='alert'
         >
           <strong>{props.alert.type}</strong>: {props.alert.message}
