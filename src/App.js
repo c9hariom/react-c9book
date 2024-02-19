@@ -8,6 +8,7 @@ import Alert from './component/Alert'
 import Login from './component/Login'
 import Signup from './component/Signup'
 import { useState } from 'react'
+import Logout from './component/Logout'
 
 function App () {
   const [alert, setAlert] = useState(null)
@@ -27,7 +28,16 @@ function App () {
           <Alert message={'amazing'} />
           <div className='container'>
             <Routes>
-              <Route path='/' element={<Home showAlert={showAlert} />}></Route>
+              <Route
+                path='/'
+                element={
+                  localStorage.getItem('token') ? (
+                    <Home showAlert={showAlert} />
+                  ) : (
+                    <Login showAlert={showAlert} />
+                  )
+                }
+              ></Route>
               <Route path='/about' element={<About />}></Route>
               <Route
                 path='/login'
@@ -36,6 +46,10 @@ function App () {
               <Route
                 path='/signup'
                 element={<Signup showAlert={showAlert} />}
+              ></Route>
+              <Route
+                path='/logout'
+                element={<Logout showAlert={showAlert} />}
               ></Route>
             </Routes>
           </div>

@@ -3,6 +3,7 @@ import NoteContext from '../context/notes/NoteContext'
 import { useContext } from 'react'
 import NoteItem from './NoteItem'
 import AddNote from './AddNote'
+import { useNavigate } from 'react-router-dom'
 
 const Notes = () => {
   const context = useContext(NoteContext)
@@ -38,6 +39,14 @@ const Notes = () => {
   const onchange = e => {
     setEditNote({ ...editNote, [e.target.name]: e.target.value })
   }
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/login')
+    }
+  }, [])
 
   return (
     <>

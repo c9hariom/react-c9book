@@ -4,7 +4,7 @@ import { useState } from 'react'
 const NoteState = props => {
   const host = 'http://localhost:5000'
   const notesInitial = []
-
+  const token = localStorage.getItem('token')
   const [notes, setNotes] = useState(notesInitial)
 
   const getNotes = async () => {
@@ -12,8 +12,7 @@ const NoteState = props => {
       const response = await fetch(`${host}/api/notes/fetchallnotes/`, {
         method: 'GET',
         headers: {
-          'auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjYjIyNmE0NjFmNzFhZTNhNjg3YTVkIn0sImlhdCI6MTcwNzkwMzU3Nn0.cfRdHX3Mvook26VGUub1qw8CyNM4uaD_gsK0-_IA4v8',
+          'auth-token': token,
           'content-type': 'application/json'
         }
       })
@@ -30,8 +29,7 @@ const NoteState = props => {
       const response = await fetch(`${host}/api/notes/addnote/`, {
         method: 'POST',
         headers: {
-          'auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjYjIyNmE0NjFmNzFhZTNhNjg3YTVkIn0sImlhdCI6MTcwNzkwMzU3Nn0.cfRdHX3Mvook26VGUub1qw8CyNM4uaD_gsK0-_IA4v8',
+          'auth-token': token,
           'content-type': 'application/json'
         },
         body: JSON.stringify({ title, description, tag })
@@ -55,8 +53,7 @@ const NoteState = props => {
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
         method: 'PUT',
         headers: {
-          'auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjYjIyNmE0NjFmNzFhZTNhNjg3YTVkIn0sImlhdCI6MTcwNzkwMzU3Nn0.cfRdHX3Mvook26VGUub1qw8CyNM4uaD_gsK0-_IA4v8',
+          'auth-token': token,
           'content-type': 'application/json'
         },
         body: JSON.stringify({ title, description, tag })
@@ -84,8 +81,7 @@ const NoteState = props => {
       const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
         method: 'DELETE',
         headers: {
-          'auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjYjIyNmE0NjFmNzFhZTNhNjg3YTVkIn0sImlhdCI6MTcwNzkwMzU3Nn0.cfRdHX3Mvook26VGUub1qw8CyNM4uaD_gsK0-_IA4v8',
+          'auth-token': token,
           'content-type': 'application/json'
         },
         body: JSON.stringify({ id })

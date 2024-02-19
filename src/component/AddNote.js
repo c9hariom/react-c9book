@@ -7,7 +7,8 @@ const AddNote = () => {
 
   const [note, setNote] = useState({ title: '', description: '', tag: '' })
 
-  const handleClick = () => {
+  const handleClick = e => {
+    e.preventDefault()
     // console.log(note)
     addNote(note.title, note.description, note.tag)
   }

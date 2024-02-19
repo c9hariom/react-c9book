@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+
+
 
 const Navbar = ()=>{
   let location = useLocation();
   // useEffect(()=>{
   //   console.log(location.pathname);
   // },[location])
+
+
+
     return(
         <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div className="container-fluid">
@@ -23,9 +29,10 @@ const Navbar = ()=>{
         </li>
       </ul>
       <form className="d-flex">
-      <Link className="btn btn-primary mx-2" to="/login">Login</Link>
-      <Link className="btn btn-primary" to="/signup">Signup</Link>
-      </form>
+      <Link className={!localStorage.getItem('token')?"btn btn-primary mx-1":"d-none"} to="/login">Login</Link>
+      <Link className={!localStorage.getItem('token')?"btn btn-primary mx-1":"d-none"} to="/signup">Signup</Link>
+      <Link className={localStorage.getItem('token')?"btn btn-primary ":"d-none"} to="/logout">Logout</Link>
+      </form> 
     </div>
   </div>
 </nav>

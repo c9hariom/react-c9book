@@ -45,9 +45,10 @@ const Signup = props => {
 
   return (
     <div>
+      <h2 className='mt-2'>Create an account to use c0book</h2>
       <form onSubmit={handleSubmit}>
         <div className='mb-3'>
-          <label htmlFor='name' className='form-label'>
+          <label htmlFor='name' className='form-label' id='l1'>
             Name
           </label>
           <input
